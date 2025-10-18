@@ -17,7 +17,6 @@ def call_gemini_reconstruct(fragment: str) -> str:
         return f"(Mock Reconstruction) Based on the fragment: '{fragment}' — this seems to describe an old internet conversation or meme."
     return "(Real API reconstruction not implemented in this demo)"
 def search_web(fragment: str):
-    # Mock sources
     return [
         ('Wikipedia: MySpace', 'https://en.wikipedia.org/wiki/Myspace', 'Explains MySpace Top 8 drama.'),
         ('Dictionary.com: SMH', 'https://www.dictionary.com/e/slang/smh/', 'Meaning of "smh"'),
