@@ -1,4 +1,5 @@
 Project Chronos: The AI Archeologist
+
 Name :  I Jaswanth
 ID : SE23UMCS015
 Name : L Revanth
@@ -7,7 +8,9 @@ Name : K Sai Harsha
 ID : SE23UMCS026
 Name : B Manas
 ID : SE23UMCS037
+
 Project Description
+
 This application is designed to reconstruct fragmented text into a coherent format using the Google Gemini API. It allows users to input a string of fragmented text and receive a fully reconstructed version as output, making it useful for text analysis, data cleaning, or NLP experiments.
 Setup Instructions
 
