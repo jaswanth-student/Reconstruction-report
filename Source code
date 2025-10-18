@@ -1,0 +1,52 @@
+import os
+import time
+from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'mock')
+SEARCH_ENGINE = os.getenv('SEARCH_ENGINE', 'mock')
+def call_gemini_reconstruct(fragment: str) -> str:
+    if not GEMINI_API_KEY or GEMINI_API_KEY.lower() == 'mock':
+        examples = {
+            "smh": "Shaking my head at the drama surrounding the 'Top 8' friends list on MySpace. People need to relax. I have got to go, talk to you later",
+            "ascii": "Found an old signature with ASCII art — people are going wild about it again!",
+        }
+        for key, val in examples.items():
+            if key in fragment.lower():
+                return val
+        return f"(Mock Reconstruction) Based on the fragment: '{fragment}' — this seems to describe an old internet conversation or meme."
+    return "(Real API reconstruction not implemented in this demo)"
+def search_web(fragment: str):
+    # Mock sources
+    return [
+        ('Wikipedia: MySpace', 'https://en.wikipedia.org/wiki/Myspace', 'Explains MySpace Top 8 drama.'),
+        ('Dictionary.com: SMH', 'https://www.dictionary.com/e/slang/smh/', 'Meaning of "smh"'),
+    ]
+def build_report(original: str, reconstructed: str, sources: list) -> str:
+    tstamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    lines = [
+        f'--- RECONSTRUCTION REPORT ---',
+        f'Date: {tstamp}',
+        '\nOriginal Fragment',
+        f'{original}\n',
+        'AI-Reconstructed Text',
+        f'{reconstructed}\n',
+        'Contextual Sources',
+    ]
+    for title, url, snippet in sources:
+        lines.append(f'- {title}: {snippet}')
+    return '\n'.join(lines)
+def save_report(content: str) -> str:
+    name = f'report_{int(time.time())}.md'
+    with open(name, 'w', encoding='utf-8') as f:
+        f.write(content)
+    return name
+def generate_reconstruction_report(fragment: str) -> str:
+    reconstructed = call_gemini_reconstruct(fragment)
+    sources = search_web(fragment)
+    report = build_report(fragment, reconstructed, sources)
+    path = save_report(report)
+    print(f"[Saved report → {path}]")
+    return report
+report_text = generate_reconstruction_report("check out this sick ASCII art I made lol")
+print(report_text)
