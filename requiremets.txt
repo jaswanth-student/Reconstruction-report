@@ -1,0 +1,4 @@
+pip install python-dotenv
+python-dotenv
+requests
+pip install -r requirements.txt
